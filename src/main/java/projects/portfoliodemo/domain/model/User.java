@@ -1,24 +1,20 @@
 package projects.portfoliodemo.domain.model;
 
-
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
 @EqualsAndHashCode(of = "username")
-//overwrites annotations in @Data
 @ToString(exclude = "password")
-public class User {
+public class User implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -37,6 +33,5 @@ public class User {
                     name = "users_roles_username_idx",
                     columnList = "username"))
     @Column(name = "role")
-    private Set<String> roles;
-
+    private Set<String> roles = new HashSet<>();
 }

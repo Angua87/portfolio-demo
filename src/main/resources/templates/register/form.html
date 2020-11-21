@@ -13,7 +13,6 @@
                     <input th:field="*{username}" type="email"/>
                 </label>
                 <div th:if="${#fields.hasErrors('username')}" th:text="${#fields.errors('username')}">
-
                 </div>
             </div>
             <div>
@@ -29,6 +28,7 @@
             <div>
                 <button type="submit">Zarejestruj</button>
             </div>
+            <div th:if="${#fields.hasGlobalErrors()}" th:value="${#fields.globalErrors()}"></div>
         </fieldset>
     </form>
 </div>

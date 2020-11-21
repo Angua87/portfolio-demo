@@ -12,7 +12,6 @@ public class RegisterUserCommand {
 
     @NotNull @Email
     private String username;
-    @NotBlank
-    @Size(min = 4, max = 12)
+    @NotBlank @Size(min = 4, max = 12)
     private String password;
 }
