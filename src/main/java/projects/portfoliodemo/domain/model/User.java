@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(of = "username")
-//overwritten annotations in @Data
+//overwrites annotations in @Data
 @ToString(exclude = "password")
 public class User {
 
