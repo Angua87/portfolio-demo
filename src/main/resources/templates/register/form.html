@@ -2,35 +2,42 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="Rejestracja">Rejestracja</title>
+    <title>Twój profil</title>
 </head>
 <body>
-<div>
-    <form th:action="@{/register}" th:method="post" th:object="${registerUserCommand}">
-        <fieldset>
-            <div>
-                <label>Nazwa użytkownika:
-                    <input th:field="*{username}" type="email"/>
-                </label>
-                <div th:if="${#fields.hasErrors('username')}" th:text="${#fields.errors('username')}">
-                </div>
+<section>
+    <h1>Twój profil <span th:text="${userSummary.username}"></span></h1>
+</section>
+<section>
+    <form th:action="@{/profile/edit}" th:method="post" th:object="${editUserCommand}">
+        <div>
+            <label>Imię:
+                <input type="text" th:field="*{firstName}" name="firstName"/>
+            </label>
+            <div th:if="${#fields.hasErrors('firstName')}">
+                <span th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></span>
             </div>
-            <div>
-                <label>Hasło:
-                    <input th:field="*{password}" type="password"/>
-                </label>
-                <div th:if="${#fields.hasErrors('password')}" th:text="${#fields.errors('password')}">
-
-                </div>
+        </div>
+        <div>
+            <label>Nazwisko:
+                <input type="text" th:field="*{lastName}" name="lastName"/>
+            </label>
+            <div th:if="${#fields.hasErrors('lastName')}">
+                <span th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></span>
             </div>
-        </fieldset>
-        <fieldset>
-            <div>
-                <button type="submit">Zarejestruj</button>
+        </div>
+        <div>
+            <label>Data urodzenia:
+                <input type="date" th:field="*{birthDate}" name="birthDate"/>
+            </label>
+            <div th:if="${#fields.hasErrors('birthDate')}">
+                <span th:each="err : ${#fields.errors('birthDate')}" th:text="${err}"></span>
             </div>
-            <div th:if="${#fields.hasGlobalErrors()}" th:value="${#fields.globalErrors()}"></div>
-        </fieldset>
+        </div>
+        <div>
+            <button type="submit">Zapisz</button>
+        </div>
     </form>
-</div>
+</section>
 </body>
 </html>
